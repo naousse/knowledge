@@ -2,18 +2,18 @@
 <openerp>
     <data>
        <menuitem name="Knowledge"
-                 id="knowledge.menu_document"  groups="base.group_system,base.group_document_user"
+                 id="base.menu_document"  groups="base.group_system,base.group_document_user"
                   sequence="116"/>
 
-              <menuitem name="Configuration" id="knowledge.menu_document_configuration"
-                  parent="knowledge.menu_document" sequence="50"/>
+              <menuitem name="Configuration" id="base.menu_document_configuration"
+                  parent="base.menu_document" sequence="50"/>
 
-              <menuitem name="Collaborative Content" id="knowledge.menu_document2"
-                 parent="knowledge.menu_document"/>
+              <menuitem name="Collaborative Content" id="base.menu_document2"
+                 parent="base.menu_document"/>
 
        <menuitem name="Pages"
                  id="menu_wiki"
-                 parent="knowledge.menu_document"
+                 parent="base.menu_document"
                  sequence="20" />
 
         <!-- wiki tree view -->

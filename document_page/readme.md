@@ -1,19 +1,34 @@
-Migration du module
+Module's migration
+------------------
 
-Création des dossiers models et views, data et demo
-Déplacements des fichiers document_page_view.xml dans views et renommage document_page
-Déplacements des fichiers document_page_data.xml dans data et renommage document_page
-Déplacements des fichiers document_page_demo.xml dans demo et Renommage document_page
-Déplacements des fichiers document_page.py dans models et Renommage document_page
+Operations
 
-initialisation du modules models par la création du fichier __init__
+Creation of folders models, views, data and demo
+document_page_view.xml moved to views and renamed to document_page
+document_page_data.xml moved to data and renamed to document_page
+document_page_demo.xml moved to demo and renamed to document_page
+document_page.py moved to models and renamed to document_page
 
-Modification dans le module wizard
+Module models initialise by the creation of the file __init__.py
 
-Déplacements des fichiers document_page.py dans models et Renommage document_page
-Renommage de document_page_create_menu_view.xml en document_page_create_menu.xml
-Renommage de document_page_create_show_diff_view.xml en document_page_create_show_diff.xml
+wizard file reorganized
+folder wizard created
+document_page_create_menu.py and document_page_create_show_diff.py moved to wizard
+document_page_create_menu_view.xml moved to document_page_create_menu.xml
+document_page_create_show_diff_view.xml en document_page_create_show_diff.xml
 
 
-modification du fichier __openerp_.py et __init__.py afin qu'il reflète les différents chemin des fichiers
-et initialisation des module
+__openerp_.py et __init__.py file edited in order to reflect the module organization
+
+While the module knowledge is no more necessary the following menu was created
+as based menu for future Operation's menu
+
+<menuitem name="Knowledge"
+          id="base.menu_document"  groups="base.group_system,base.group_document_user"
+           sequence="116"/>
+
+       <menuitem name="Configuration" id="base.menu_document_configuration"
+           parent="base.menu_document" sequence="50"/>
+
+       <menuitem name="Collaborative Content" id="base.menu_document2"
+          parent="base.menu_document"/>
