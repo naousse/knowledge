@@ -23,16 +23,12 @@
     'name': 'Document Page',
     'version': '9.0.1.0.0',
     'category': 'Knowledge Management',
-    'description': """
-Pages
-=====
-Web pages
-    """,
-    'author': ['OpenERP SA'],
+    'author': ['OpenERP SA','Odoo Community Association (OCA)'],
     'website': 'http://www.openerp.com/',
     'license': 'AGPL-3',
     'depends': [
         'mail',
+        'knowledge',
     ],
     'data': [
         'wizard/document_page_create_menu.xml',
@@ -49,6 +45,5 @@ Web pages
     ],
     'installable': True,
     'auto_install': False,
-    'images': [],
     'css': ['static/src/css/document_page.css'],
 }
