@@ -39,7 +39,7 @@ class DocumentPageCreateMenu(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(document_page_create_menu, self).default_get(fields_list)
+        res = super(DocumentPageCreateMenu, self).default_get(fields_list)
         page_id = self.env.context.get('active_id')
         obj_page = self.env['document.page']
         page = obj_page.browse(page_id)
