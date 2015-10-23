@@ -2,16 +2,17 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==============
-Document Page
-==============
+================================
+Knowledge Management System base
+================================
 
 This module allows you to write web pages for internal documentation.
 
 Installation
 ============
 
-This module depends on module knowledge. So make sure to have available it in your addons list
+Makes the Knowledge Application Configuration available from where you can install
+document and Wiki based Hidden.
 
 Configuration
 =============
@@ -22,12 +23,6 @@ Usage
 =====
 
 To use this module, you need to:
-* Install the module's dependencies
-* Install this module module
-* Got to knowledge menu
-* use submenu Categories to Create the document's category you need
-* use submenu Pages to  Create pages for that category
-* use tu submenu Pages history for pages revision history
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -80,21 +75,30 @@ To contribute to this module, please visit http://odoo-community.org.
 Changelog
 ---------
 
-v 9.0.1.0.0
+v9.0.1.0.0
 
-Creation of folders models, views, data and demo
-document_page_view.xml moved to views and renamed to document_page
-document_page_data.xml moved to data and renamed to document_page
-document_page_demo.xml moved to demo and renamed to document_page
-document_page.py moved to models and renamed to document_page
+This module is an official module but was not present in odoo 9.0 official repository
+so we took it from Odoo 8.0 repository and add it here.
 
-Module models initialise by the creation of the file __init__.py
+Here are the modification that have been done to make it work
 
-wizard file reorganized
-folder wizard created
-document_page_create_menu.py and document_page_create_show_diff.py moved to wizard
-document_page_create_menu_view.xml moved to document_page_create_menu.xml
-document_page_create_show_diff_view.xml en document_page_create_show_diff.xml
+We added views folder
+we moved Knowledge_view.xml and res_config_view.xml to views
+we renamed Knowledge_view.xml to Knowledge.xml and res_config_view.xml to res_config.xml
+
+res_config view is edited so that knowledge setting is accessible the following way
+"knowledge/configuration/settings"
+
+We added demo folder
+we moved Knowledge_demo.xml to demo
+we renamed Knowledge_demo.xml to Knowledge.xml and
 
 
-__openerp_.py et __init__.py file edited in order to reflect the module organization
+we created models folder
+we moved res_config.py to that folder and edited it to respect the new Odoo model api
+and OCA guidelines
+#osv.osv_memory replace by models.TransientModel
+#_columns removed
+we created the __init__.py file
+
+we edited the __openerp__.py file to reflect the new folder structure

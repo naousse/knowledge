@@ -21,7 +21,7 @@
 from openerp import models, fields, api
 
 
-class document_page_create_menu(models.TransientModel):
+class DocumentPageCreateMenu(models.TransientModel):
     """ Create Menu """
     _name = "document.page.create.menu"
     _description = "Wizard Create Menu"
@@ -86,6 +86,3 @@ class document_page_create_menu(models.TransientModel):
             'type': 'ir.actions.client',
             'tag': 'reload',
         }
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,5 +18,23 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import document_page_create_menu
-from . import document_page_show_diff
+
+
+{
+    'name': 'Knowledge Management System',
+    'version': '9.0.1.0.0',
+    'depends': ['base', 'base_setup'],
+    'author': ['OpenERP SA', 'Odoo Community Association (OCA)'],
+    'category': 'Hidden/Dependency',
+    'license': 'AGPL3',
+    'website': 'https://www.odoo.com',
+    'data': [
+        'security/knowledge_security.xml',
+        'security/ir.model.access.csv',
+        'views/knowledge.xml',
+        'views/res_config.xml',
+    ],
+    'demo': ['demo/knowledge.xml'],
+    'installable': True,
+    'auto_install': False,
+}

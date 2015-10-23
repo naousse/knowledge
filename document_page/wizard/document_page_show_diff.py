@@ -22,7 +22,7 @@ from openerp import models, fields, _
 from openerp import exceptions
 
 
-class showdiff(models.TransientModel):
+class DocumentPageShowDiff(models.TransientModel):
     """ Display Difference for History """
 
     _name = 'wizard.document.page.history.show_diff'
