@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#    Copyright (C) 2004-2009 Tiny SPRL (<http://tiny.be>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,31 +19,6 @@
 #
 ##############################################################################
 
-{
-    'name': 'Document Page',
-    'version': '9.0.1.0.0',
-    'category': 'Knowledge Management',
-    'author': ['OpenERP SA','Odoo Community Association (OCA)'],
-    'website': 'http://www.openerp.com/',
-    'license': 'AGPL-3',
-    'depends': [
-        'mail',
-        'knowledge',
-    ],
-    'data': [
-        'wizard/document_page_create_menu.xml',
-        'wizard/document_page_show_diff.xml',
-        'views/document_page.xml',
-        'security/document_page_security.xml',
-        'security/ir.model.access.csv',
-    ],
-    'demo': [
-        'demo/document_page.xml'
-    ],
-    'test': [
-        'test/document_page_test00.yml'
-    ],
-    'installable': True,
-    'auto_install': False,
-    'css': ['static/src/css/document_page.css'],
-}
+import models
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
