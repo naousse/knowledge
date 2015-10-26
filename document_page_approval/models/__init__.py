@@ -18,31 +18,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-{
-    'name': 'Document Page Approval',
-    'version': '9.0.1.0.0',
-    "author": "Savoir-faire Linux,Odoo Community Association (OCA)",
-    "website": "http://www.savoirfairelinux.com",
-    "license": "AGPL-3",
-    'category': 'Knowledge Management',
-    'depends': [
-        'knowledge',
-        'document_page',
-        'mail',
-    ],
-    'data': [
-        'data/email_template.xml',
-        'workflows/document_page_approval.xml',
-        'views/document_page_approval.xml',
-        'security/document_page_security.xml',
-        'security/ir.model.access.csv',
-    ],
-    'installable': True,
-    'auto_install': False,
-    'images': [
-        'images/category.png',
-        'images/page_history_list.png',
-        'images/page_history.png',
-    ],
-}
+from . import document_page_approval, document_page_history_workflow

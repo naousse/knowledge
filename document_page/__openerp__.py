@@ -1,8 +1,8 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2013 Savoir-faire Linux (<http://www.savoirfairelinux.com>).
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,29 +20,30 @@
 ##############################################################################
 
 {
-    'name': 'Document Page Approval',
+    'name': 'Document Page',
     'version': '9.0.1.0.0',
-    "author": "Savoir-faire Linux,Odoo Community Association (OCA)",
-    "website": "http://www.savoirfairelinux.com",
-    "license": "AGPL-3",
     'category': 'Knowledge Management',
+    'author': ['OpenERP SA', 'Odoo Community Association (OCA)'],
+    'website': 'http://www.openerp.com/',
+    'license': 'AGPL-3',
     'depends': [
-        'knowledge',
-        'document_page',
         'mail',
+        'knowledge',
     ],
     'data': [
-        'data/email_template.xml',
-        'workflows/document_page_approval.xml',
-        'views/document_page_approval.xml',
+        'wizard/document_page_create_menu.xml',
+        'wizard/document_page_show_diff.xml',
+        'views/document_page.xml',
         'security/document_page_security.xml',
         'security/ir.model.access.csv',
     ],
+    'demo': [
+        'demo/document_page.xml'
+    ],
+    'test': [
+        'test/document_page_test00.yml'
+    ],
     'installable': True,
     'auto_install': False,
-    'images': [
-        'images/category.png',
-        'images/page_history_list.png',
-        'images/page_history.png',
-    ],
+    'css': ['static/src/css/document_page.css'],
 }
