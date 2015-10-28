@@ -36,7 +36,7 @@ class DocumentPageHistoryWorkflow(models.Model):
             'email_template_new_draft_need_approval')[1]
         for page in self.browse(cr, uid, ids, context=context):
             if page.is_parent_approval_required:
-                self.pool.get('email.template').send_mail(
+                self.pool.get('mail.template').send_mail(
                     cr,
                     uid,
                     template_id,
