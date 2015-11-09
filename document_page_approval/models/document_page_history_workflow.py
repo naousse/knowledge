@@ -23,13 +23,14 @@ from datetime import datetime
 from openerp.tools.translate import _
 from openerp.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp import models, fields, SUPERUSER_ID
-
+import pdb
 
 class DocumentPageHistoryWorkflow(models.Model):
     _inherit = 'document.page.history'
 
     def page_approval_draft(self, cr, uid, ids, context=None):
         self.write(cr, uid, ids, {'state': 'draft'})
+        pdb.set_trace()
         template_id = self.pool.get('ir.model.data').get_object_reference(
             cr, uid,
             'document_page_approval',
