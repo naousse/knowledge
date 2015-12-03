@@ -1,3 +1,4 @@
+"""DocumentPageHistory's model."""
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
@@ -26,6 +27,8 @@ _logger = logging.getLogger(__name__)
 
 
 class DocumentPageHistory(models.Model):
+    """Model use to manage document history Revision."""
+
     _name = "document.page.history"
     _description = "Document Page History"
     _order = 'id DESC'
@@ -38,6 +41,7 @@ class DocumentPageHistory(models.Model):
     create_uid = fields.Many2one('res.users', "Modified By")
 
     def getDiff(self, v1, v2):
+        """Get document difference."""
         text1 = self.browse(v1).content
         text2 = self.browse(v2).content
         line1 = line2 = ''
@@ -57,7 +61,7 @@ class DocumentPageHistory(models.Model):
             )
 
     def __getattr__(self, attr):
-        """Return a dummy callabale"""
+        """Return a dummy callabale."""
         if attr in ['_sql', 'init', '_ids']:
             raise AttributeError
 

@@ -23,11 +23,12 @@ from openerp import exceptions
 
 
 class DocumentPageShowDiff(models.TransientModel):
-    """ Display Difference for History """
+    """Display Difference for History."""
 
     _name = 'wizard.document.page.history.show_diff'
 
     def get_diff(self):
+        """Return document difference."""
         history = self.env["document.page.history"]
         ids = self.env.context.get('active_ids', [])
 
