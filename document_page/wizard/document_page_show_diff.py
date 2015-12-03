@@ -1,3 +1,4 @@
+"""DocumentPageShowDiff model."""
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
@@ -28,7 +29,7 @@ class DocumentPageShowDiff(models.TransientModel):
     _name = 'wizard.document.page.history.show_diff'
 
     def get_diff(self):
-        """Return document difference."""
+        """Return the Difference between two document."""
         history = self.env["document.page.history"]
         ids = self.env.context.get('active_ids', [])
 

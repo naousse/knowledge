@@ -1,4 +1,4 @@
-"""DocumentPageHistory's model."""
+"""DocumentPageHistory model."""
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
@@ -27,7 +27,7 @@ _logger = logging.getLogger(__name__)
 
 
 class DocumentPageHistory(models.Model):
-    """Model use to manage document history Revision."""
+    """This model is necessary to manage a document history."""
 
     _name = "document.page.history"
     _description = "Document Page History"
@@ -35,13 +35,13 @@ class DocumentPageHistory(models.Model):
     _rec_name = "create_date"
 
     page_id = fields.Many2one('document.page', 'Page')
-    summary = fields.Char('Summary', size=256, select=True)
+    summary = fields.Char('Summary', select=True)
     content = fields.Text("Content")
     create_date = fields.Datetime("Date")
     create_uid = fields.Many2one('res.users', "Modified By")
 
     def getDiff(self, v1, v2):
-        """Get document difference."""
+        """Return the difference between two version of document version."""
         text1 = self.browse(v1).content
         text2 = self.browse(v2).content
         line1 = line2 = ''

@@ -1,3 +1,4 @@
+"""DocumentPageCreateMenu model."""
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
@@ -22,7 +23,8 @@ from openerp import models, fields, api
 
 
 class DocumentPageCreateMenu(models.TransientModel):
-    """ Create Menu """
+    """Create Menu."""
+
     _name = "document.page.create.menu"
     _description = "Wizard Create Menu"
 
@@ -39,6 +41,7 @@ class DocumentPageCreateMenu(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
+        """Add page to the menu."""
         res = super(DocumentPageCreateMenu, self).default_get(fields_list)
         page_id = self.env.context.get('active_id')
         obj_page = self.env['document.page']
@@ -48,6 +51,7 @@ class DocumentPageCreateMenu(models.TransientModel):
 
     @api.multi
     def document_page_menu_create(self):
+        """Menu creation."""
         obj_page = self.env['document.page']
         obj_menu = self.env['ir.ui.menu']
         obj_action = self.env['ir.actions.act_window']

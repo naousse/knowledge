@@ -1,3 +1,4 @@
+"""Document model."""
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
@@ -25,6 +26,8 @@ _logger = logging.getLogger(__name__)
 
 
 class DocumentPage(models.Model):
+    """This class is use to manage Document."""
+
     _name = "document.page"
     _inherit = ['mail.thread']
     _description = "Document Page"
@@ -98,6 +101,7 @@ class DocumentPage(models.Model):
     )
 
     def _get_page_index(self, page, link=True):
+        """Return the index of a document."""
         index = []
         for subpage in page.child_ids:
             index += ["<li>" + self._get_page_index(subpage) +
@@ -111,6 +115,7 @@ class DocumentPage(models.Model):
         return r
 
     def _get_display_content(self):
+        """Return the content of a document."""
         for page in self:
             if page.type == "category":
                 display_content = self._get_page_index(page, link=False)
@@ -120,11 +125,13 @@ class DocumentPage(models.Model):
 
     @api.onchange("parent_id")
     def do_set_content(self):
+        """We Set it the right content to the new parent."""
         if self.parent_id and not self.content:
             if self.parent_id.type == "category":
                 self.content = self.parent_id.content
 
     def create_history(self, page_id, content):
+        """Create the first history of a newly created document."""
         history = self.env['document.page.history']
         return history.create({
             "content": content,
@@ -133,6 +140,7 @@ class DocumentPage(models.Model):
 
     @api.multi
     def write(self, vals):
+        """Write the content and set the history."""
         result = super(DocumentPage, self).write(vals)
         content = vals.get('content')
         if content:
@@ -143,6 +151,7 @@ class DocumentPage(models.Model):
     @api.model
     @api.returns('self', lambda value: value.id)
     def create(self, vals):
+        """Create the first history of a document."""
         page_id = super(DocumentPage, self).create(vals)
         content = vals.get('content')
         if content:
