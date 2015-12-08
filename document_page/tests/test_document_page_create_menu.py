@@ -10,8 +10,9 @@ class TestDocumentPageCreateMenu(common.TransactionCase):
         """Test page menu creation."""
         menu_parent = self.env.ref('base.menu_base_partner')
 
-        menu_created = self.env['document.page.create.menu'].create({
-             'menu_name': 'Wiki Test menu', 'menu_parent_id': menu_parent.id})
+        menu_created = self.env['document.page.create.menu'].create(
+            {'menu_name': 'Wiki Test menu', 'menu_parent_id': menu_parent.id}
+        )
 
         menu = self.env['document.page.create.menu'].search(
             [('id', '=', menu_created.id)]
@@ -19,3 +20,11 @@ class TestDocumentPageCreateMenu(common.TransactionCase):
         menu.with_context(
             active_id=[self.ref('document_page.demo_page1')]
         ).document_page_menu_create()
+
+        fields_list = ["menu_name", "menu_name"]
+
+        res = menu.with_context(
+            active_id=[self.ref('document_page.demo_page1')]
+        ).default_get(fields_list)
+
+        self.assertEqual(res['menu_name'], 'OpenERP 6.1. Functional Demo')
