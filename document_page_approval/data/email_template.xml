@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
 
     <!-- Allow user to make upgrade-proof customizations to email template -->
 
@@ -28,4 +28,4 @@ Odoo</p>]]>
         </record>
 
     </data>
-</openerp>
+</odoo>

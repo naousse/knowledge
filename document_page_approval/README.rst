@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-================================
-Management System base
-================================
+======================
+Document Page Approval
+======================
 
 This module adds a workflow to approve page modification and show the approved
 version by default.
@@ -12,8 +12,8 @@ version by default.
 Installation
 ============
 
-Makes the document page approval available from where some users can approved the modification
-made by oder users in documents that required approvement
+Makes the document page approval available from where some users can approved the modifications
+made by others users in documents that required approvement.
 
 Configuration
 =============
@@ -24,8 +24,9 @@ Usage
 =====
 
 To use this module, you need to:
+
 * Set a valid email address on the company settings.
-* go to knowledge > Categories
+* go to knowledge > Categories.
 * Create a new page category and set an approver group. Make sure users
   belonging to that group have valid email addresses.
 * go to knowledge > Pages
@@ -42,16 +43,14 @@ To use this module, you need to:
 Known issues / Roadmap
 ======================
 
+
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/
 knowledge/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback `here <https://github.com/OCA/
-knowledge/issues/new?body=module:%20
-document_page_approval%0Aversion:%20
-9.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+If you spotted it first, help us smashing it by providing a detailed and welcomed feedback `here <https://github.com/OCA/knowledge/issues/new?body=module:%20document_page_approval%0Aversion:%209.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 
 Credits
@@ -84,13 +83,6 @@ Changelog
 
 v9.0.1.0.0
 
-Here are the modification that have been done
+Here are the modification that have been done:
 
-The module no more depends on email_template but on mail module
-the model's module are now in the models folder and they are been split so that
-we have one file for each model (document_page_approval.py and
-document_page_history_workflow.py)
-we moved the view in the views folder  and the workflow int the workflow folder
-we edited the data file data/email_template.xml and
-the document_page_history_workflow.py so that they now use the mail module
-the __openerp__.py file now reflected the new module structure
+* The module does no depends anymore on email_template but on mail module

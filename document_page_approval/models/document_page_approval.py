@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -19,13 +19,17 @@
 #
 ##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class DocumentPageApproval(models.Model):
+    """Useful to know the state of a document."""
+
     _inherit = 'document.page'
 
+    @api.multi
     def _get_display_content(self):
+        """Display the content of document."""
         for page in self:
             content = ""
             if page.type == "category":
@@ -46,7 +50,9 @@ class DocumentPageApproval(models.Model):
                     content = page.content
             page.display_content = content
 
+    @api.multi
     def _get_approved_date(self):
+        """Return the approved date of a document."""
         for page in self:
             approved_date = False
             if self.is_approval_required(page):
@@ -62,7 +68,9 @@ class DocumentPageApproval(models.Model):
                 approved_date = history_ids.approved_date
             page.approved_date = approved_date
 
+    @api.multi
     def _get_approved_uid(self):
+        """Return the user's id of the approved user."""
         for page in self:
             approved_uid = False
             if self.is_approval_required(page):
@@ -79,10 +87,12 @@ class DocumentPageApproval(models.Model):
             page.approved_uid = approved_uid
 
     def _is_parent_approval_required(self):
+        """Check if the document required approval base on his parrent."""
         for page in self:
             page.is_parent_approval_required = self.is_approval_required(page)
 
     def is_approval_required(self, page):
+        """Check if a document required approval."""
         if page:
             res = page.approval_required
             res = res or self.is_approval_required(page.parent_id)

@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -26,40 +26,43 @@ from openerp import models, fields, SUPERUSER_ID
 
 
 class DocumentPageHistoryWorkflow(models.Model):
+    """Useful to manage edition's workflow on a document."""
+
     _inherit = 'document.page.history'
 
-    def page_approval_draft(self, cr, uid, ids, context=None):
-        self.write(cr, uid, ids, {'state': 'draft'})
+    def page_approval_draft(self):
+        """Set a document state as draft and notified the reviewers."""
+        self.write({'state': 'draft'})
         template_id = self.pool.get('ir.model.data').get_object_reference(
-            cr, uid,
+            self.env.cr, self.env.uid,
             'document_page_approval',
             'email_template_new_draft_need_approval')[1]
-        for page in self.browse(cr, uid, ids, context=context):
+        for page in self:
             if page.is_parent_approval_required:
                 self.pool.get('mail.template').send_mail(
-                    cr,
-                    uid,
+                    self.env.cr, self.env.uid,
                     template_id,
                     page.id,
                     force_send=True
                 )
         return True
 
-    def page_approval_approved(self, cr, uid, ids, context=None):
+    def page_approval_approved(self):
+        """Set a document state as approve."""
         model_data_obj = self.pool.get('ir.model.data')
         message_obj = self.pool.get('mail.message')
-        self.write(cr, uid, ids, {
+        self.write({
             'state': 'approved',
             'approved_date': datetime.now().strftime(
                 DEFAULT_SERVER_DATETIME_FORMAT),
-            'approved_uid': uid
-        }, context=context)
+            'approved_uid': self.env.uid
+        })
         # Notify followers a new version is available
-        for page_history in self.browse(cr, uid, ids, context=context):
+        for page_history in self:
             subtype_id = model_data_obj.get_object_reference(
-                cr, SUPERUSER_ID, 'mail', 'mt_comment')[1]
+                self.env.cr, SUPERUSER_ID, 'mail', 'mt_comment')[1]
             message_obj.create(
-                cr, uid,
+                self.env.cr, self.env.uid,
                 {'res_id': page_history.page_id.id,
                  'model': 'document.page',
                  'subtype_id': subtype_id,
@@ -70,6 +73,7 @@ class DocumentPageHistoryWorkflow(models.Model):
         return True
 
     def _can_user_approve_page(self):
+        """Check if a user cas approve the page."""
         user = self.env.user
         for page in self:
             page.can_user_approve_page = page.can_user_approve_this_page(
@@ -78,6 +82,7 @@ class DocumentPageHistoryWorkflow(models.Model):
             )
 
     def can_user_approve_this_page(self, page, user):
+        """Check if a user can approved the page."""
         if page:
             res = page.approver_gid in user.groups_id
             res = res or self.can_user_approve_this_page(page.parent_id, user)
@@ -86,12 +91,14 @@ class DocumentPageHistoryWorkflow(models.Model):
         return res
 
     def get_approvers_guids(self):
+        """Return the approvers group."""
         res = {}
         for page in self:
             res[page.id] = self.get_approvers_guids_for_page(page.page_id)
         return res
 
     def get_approvers_guids_for_page(self, page):
+        """Return the approvers group for a page."""
         if page:
             if page.approver_gid:
                 res = [page.approver_gid.id]
@@ -104,6 +111,7 @@ class DocumentPageHistoryWorkflow(models.Model):
         return res
 
     def _get_approvers_email(self):
+        """Get the approvers email."""
         for page in self:
             emails = ''
             guids = self.get_approvers_guids()
@@ -127,6 +135,7 @@ class DocumentPageHistoryWorkflow(models.Model):
             page.get_approvers_email = emails[:-1]
 
     def _get_page_url(self):
+        """Get the page url."""
         for page in self:
             base_url = self.env['ir.config_parameter'].get_param(
                 'web.base.url',
